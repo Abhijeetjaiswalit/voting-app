@@ -7,7 +7,8 @@ class VotingPollContainer extends Component {
 
     this.state = {
       lists: [],
-      pollOptions: []
+      pollOptions: [],
+      selectedpoll: ""
     };
     this.submitVote = this.submitVote.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -38,10 +39,9 @@ class VotingPollContainer extends Component {
   handleChange(event) {
     const target = event.target;
     const value = target.value;
-    const name = target.name;
 
     this.setState({
-      [name]: value
+      selectedpoll: value
     });
   }
   render() {
@@ -59,7 +59,13 @@ class VotingPollContainer extends Component {
         </div>
       );
     });
-    console.log(this.state.pollOptions)
+    console.log(this.state.pollOptions);
+    let dataSets = [];
+    if (this.state.pollOptions.length > 0) {
+      for (let i = 0; i < this.state.pollOptions.length; i++) {
+        dataSets.push(i);
+      }
+    }
     const data = {
       labels: this.state.pollOptions,
       datasets: [
@@ -70,12 +76,11 @@ class VotingPollContainer extends Component {
           borderWidth: 1,
           hoverBackgroundColor: "rgba(255,99,132,0.4)",
           hoverBorderColor: "rgba(255,99,132,1)",
-          data: [1, 0]
+          data: dataSets
         }
       ]
     };
-    return (
-      this.state.pollOptions.length > 0 ?
+    return this.state.pollOptions.length > 0 ? (
       <div>
         <div className="col-lg-4">
           <h1>{this.state.pollName}?</h1>
@@ -93,7 +98,7 @@ class VotingPollContainer extends Component {
             </button>
           </div>
         </div>
-        <div>
+        {this.state.selectedpoll?<div>
           <Bar
             data={data}
             width={100}
@@ -102,9 +107,9 @@ class VotingPollContainer extends Component {
               maintainAspectRatio: false
             }}
           />
-        </div>
+        </div>:''}
       </div>
-      :
+    ) : (
       <h1>No poll has been registered yet.Please go ahead and add some.</h1>
     );
   }

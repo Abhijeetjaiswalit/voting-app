@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import History from '../../History'
+import React, { Component } from "react";
+import History from "../../History";
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
@@ -20,10 +20,10 @@ class LoginComponent extends Component {
     });
   }
   loginUser() {
-    console.log(this.state.email);
-    History.push('/polllists')
-    //browserHistory.push('/notfound')
-    localStorage.setItem("user", this.state.email);
+    if (this.state.password && this.state.email) {
+      History.push("/newpoll");
+      localStorage.setItem("user", this.state.email);
+    }
   }
   render() {
     return (
@@ -42,6 +42,7 @@ class LoginComponent extends Component {
                     className="form-control input-lg"
                     onChange={this.handleInputChange}
                     placeholder="Email Address"
+                    required
                   />
                 </div>
                 <div className="form-group">
@@ -52,6 +53,7 @@ class LoginComponent extends Component {
                     className="form-control input-lg"
                     onChange={this.handleInputChange}
                     placeholder="Password"
+                    required
                   />
                 </div>
                 {/* <span className="button-checkbox">
@@ -63,7 +65,7 @@ class LoginComponent extends Component {
                 <div className="row">
                   <div className="col-xs-6 col-sm-6 col-md-6 text-center">
                     <button
-                      type="button"
+                      type="submit"
                       onClick={this.loginUser}
                       className="btn btn-lg btn-success btn-block"
                       style={{ marginLeft: "140px" }}

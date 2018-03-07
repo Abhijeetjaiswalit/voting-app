@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import History from "../../History";
 import "./header.css";
-let loggedIn = null;
 
 class HeaderComponent extends Component {
   constructor(props) {
@@ -10,22 +9,27 @@ class HeaderComponent extends Component {
     this.state = {
       loggedIn: false
     };
+    this.logout = this.logout.bind(this);
   }
   componentDidMount() {
-    loggedIn = localStorage.getItem("user");
+    debugger
+    let loggedIn = localStorage.getItem("user");
     if (loggedIn) {
       this.setState({
-        loggedIn
+        loggedIn: true
       });
     }
   }
   logout() {
+    this.setState({
+      loggedIn: false
+    });
     localStorage.clear();
     History.push("/");
   }
   render() {
     return (
-      <div>
+      <div key={this.state.loggedIn}>
         <div
           id="top-nav"
           className="navbar navbar-inverse navbar-static-top"
@@ -64,7 +68,7 @@ class HeaderComponent extends Component {
                     </li>
                   </ul>
                 </li>
-                {loggedIn ? (
+                {this.state.loggedIn === true ? (
                   <li>
                     <a onClick={this.logout}>
                       <i className="fa fa-sign-out" /> Logout

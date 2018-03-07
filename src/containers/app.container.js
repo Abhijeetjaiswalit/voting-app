@@ -6,15 +6,15 @@ import Header from "../components/header/header.component";
 import SignIn from "../components/login/login.component";
 let loggedIn = localStorage.getItem("user");
 
-loggedIn ? History.replace("/newpoll") : History.replace("/");
+loggedIn ? History.replace("/polllists") : History.replace("/");
 class App extends Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header key={this.props.key}/>
         <Route
           path="/sign-in"
-          render={() => (loggedIn ? <Redirect to="/newpoll" /> : <SignIn />)}
+          render={() => (loggedIn ? <Redirect to="/polllists" /> : <SignIn />)}
         />
         <Routes />
       </div>
