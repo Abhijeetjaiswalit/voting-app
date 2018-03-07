@@ -4,7 +4,7 @@
 ####1. Clone this repository or download the ZIP file
 
 ```sh
-$ git clone https://github.com/gotyet9/cast-votes-app.git
+$ git clone https://github.com/Abhijeetjaiswalit/voting-app.git
 ```
 
 ####2.  Make sure you have [npm](https://www.npmjs.org/) installed globally
