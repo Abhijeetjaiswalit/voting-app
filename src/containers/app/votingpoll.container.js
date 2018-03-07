@@ -15,26 +15,27 @@ class VotingPollContainer extends Component {
 
   componentDidMount() {
     const polldata = JSON.parse(localStorage.getItem("polldata"));
-    const pollName = Object.assign({}, polldata);
-    this.setState({
-      pollName: pollName.pollname
-    });
-    delete polldata.options;
-    delete polldata.pollname;
-    let newArr = Object.keys(polldata);
-    let mappedArr = [];
+    if (polldata) {
+      const pollName = Object.assign({}, polldata);
+      this.setState({
+        pollName: pollName.pollname
+      });
+      delete polldata.options;
+      delete polldata.pollname;
+      let newArr = Object.keys(polldata);
+      let mappedArr = [];
 
-    newArr.map(function(i) {
-      mappedArr.push(polldata[i]);
-      return 0;
-    });
-    this.setState({
-      pollOptions: mappedArr
-    });
+      newArr.map(function(i) {
+        mappedArr.push(polldata[i]);
+        return 0;
+      });
+      this.setState({
+        pollOptions: mappedArr
+      });
+    }
   }
   submitVote() {}
   handleChange(event) {
-    debugger;
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -58,6 +59,7 @@ class VotingPollContainer extends Component {
         </div>
       );
     });
+    console.log(this.state.pollOptions)
     const data = {
       labels: this.state.pollOptions,
       datasets: [
@@ -73,6 +75,7 @@ class VotingPollContainer extends Component {
       ]
     };
     return (
+      this.state.pollOptions.length > 0 ?
       <div>
         <div className="col-lg-4">
           <h1>{this.state.pollName}?</h1>
@@ -101,6 +104,8 @@ class VotingPollContainer extends Component {
           />
         </div>
       </div>
+      :
+      <h1>No poll has been registered yet.Please go ahead and add some.</h1>
     );
   }
 }

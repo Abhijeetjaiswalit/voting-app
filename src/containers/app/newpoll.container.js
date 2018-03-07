@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PollOptions from "../../components/polloptions/polloptions.component";
+import History from "../../History";
 // import { Link } from "react-router-dom";
 class HomeContainer extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class HomeContainer extends Component {
   }
   submitHandler() {
     localStorage.setItem("polldata", JSON.stringify(this.state));
+    History.push("polllists");
   }
   changeHandler(event) {
     const target = event.target;
@@ -39,7 +41,7 @@ class HomeContainer extends Component {
     });
 
     return (
-      <div className="col-lg-4 new-poll" style={{ textAlign: "center" }}>
+      <div className="col-lg-4" style={{ textAlign: "center",marginLeft: '450px' }}>
         <h2>New Poll</h2>
         <div className="form-group">
           <label htmlFor="name">Name your poll.</label>

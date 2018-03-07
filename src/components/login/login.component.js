@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-
+import React, { Component } from "react"
+import History from '../../History'
 class LoginComponent extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +21,7 @@ class LoginComponent extends Component {
   }
   loginUser() {
     console.log(this.state.email);
+    History.push('/polllists')
     //browserHistory.push('/notfound')
     localStorage.setItem("user", this.state.email);
   }
