@@ -21,7 +21,7 @@ class LoginComponent extends Component {
   }
   loginUser() {
     if (this.state.password && this.state.email) {
-      History.push("/newpoll");
+      History.push("/polllists");
       localStorage.setItem("user", this.state.email);
     }
   }

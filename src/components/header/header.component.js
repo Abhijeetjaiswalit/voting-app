@@ -24,7 +24,7 @@ class HeaderComponent extends Component {
     this.setState({
       loggedIn: false
     });
-    localStorage.clear();
+    localStorage.removeItem('user');
     History.push("/");
   }
   render() {
