@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from "../../components/login/login.component";
+import Header from "../../components/header/header.component";
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
@@ -8,7 +8,8 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        <Login />
+        <Header/>
+        {this.props.children}
       </div>
     );
   }

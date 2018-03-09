@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Bar } from "react-chartjs-2";
-
 class VotingPollContainer extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +12,11 @@ class VotingPollContainer extends Component {
     this.submitVote = this.submitVote.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
-
   componentDidMount() {
+    // let user = localStorage.getItem("user");
+    // if (user) {
+    //   History.push("/");
+    // }
     const polldata = JSON.parse(localStorage.getItem("polldata"));
     if (polldata) {
       const pollName = Object.assign({}, polldata);
@@ -89,23 +91,6 @@ class VotingPollContainer extends Component {
     };
     return this.state.pollOptions.length > 0 ? (
       <div>
-        {/* <div className="col-lg-4">
-          <h1>{this.state.pollName}?</h1>
-          <p>by rahul</p>
-          <div className="col-lg-4">
-            <ul className="list-group">
-              <li className="list-group-item">{options}</li>
-            </ul>
-            <button
-              type="submit"
-              onClick={this.submitVote}
-              className="btn btn-primary"
-            >
-              Vote
-            </button>
-          </div>
-          
-        </div> */}
         <form className="form-horizontal">
           <fieldset>
             <div className="form-group">

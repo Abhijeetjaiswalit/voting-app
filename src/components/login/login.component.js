@@ -19,6 +19,12 @@ class LoginComponent extends Component {
       [name]: value
     });
   }
+  componentDidMount() {
+    let user = localStorage.getItem("user");
+    if (user) {
+      History.push("/polllists");
+    }
+  }
   loginUser() {
     if (this.state.password && this.state.email) {
       History.push("/polllists");
