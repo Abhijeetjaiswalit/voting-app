@@ -12,7 +12,6 @@ class HeaderComponent extends Component {
     this.logout = this.logout.bind(this);
   }
   componentDidMount() {
-    debugger
     let loggedIn = localStorage.getItem("user");
     if (loggedIn) {
       this.setState({

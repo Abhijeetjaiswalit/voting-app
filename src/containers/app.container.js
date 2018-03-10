@@ -4,6 +4,7 @@ import Dashboard from "./app/home.container";
 import Login from "../components/login/login.component";
 import NewPoll from "./app/newpoll.container";
 import PollLists from "./app/votingpoll.container";
+import PollResult from "./app/voteresult.container";
 // let loggedIn = localStorage.getItem("user");
 // loggedIn ? History.replace("/polllists") : History.replace("/");
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
           <Dashboard>
             <Route path="/newpoll" component={NewPoll} />
             <Route path="/polllists" component={PollLists} />
+            <Route path="/voteresult/:id" component={PollResult} />
           </Dashboard>
         </Switch>
         {/* <Route
